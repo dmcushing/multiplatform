@@ -19,6 +19,7 @@ then
 else
 	return 0
 fi
+}
 
 clear
 is_super_user
