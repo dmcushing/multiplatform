@@ -26,8 +26,8 @@ zone "midterm.org" {
 // IT IS THE INTERNAL IP ADDRESS OF YOUR WINDOWS SERVER
 // UBUNTU AS SECONDARY
 
-zone "midterm.org" {
+zone "midterm-2.org" {
     type slave;
-    file "midterm.org";
+    file "midterm-2.org";
     masters { 10.10.10.10; };
 };
