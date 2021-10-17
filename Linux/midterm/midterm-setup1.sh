@@ -32,16 +32,17 @@ echo -e "Setting up..."
 #
 echo -e "..Cleaning Apache Sites..."
 systemctl apache2 stop
-cp /multiplatform/Linux/ssl-server-nopass.key /etc/ssl/
+cp -f /multiplatform/Linux/midterm/ssl-server-nopass.key /etc/ssl/
 chmod 644 /etc/ssl/Linux/ssl-server-nopass.key
-cp /multiplatform/Linux/www.midterm.org.pem /etc/ssl/
+cp -f /multiplatform/Linux/midterm/www.midterm.org.pem /etc/ssl/
 chmod 644 /etc/ssl/www.midterm.org.pem
-mkdir /etc/apache2/sites-enabled/midterm_backup
-mkdir /var/www/midterm.org
-mv /etc/apache2/sites-enabled/*.conf /etc/apache2/sites-enabled/midterm_backup/
+mkdir /etc/apache2/sites-enabled/midterm_backup 2>/dev/null
+mkdir /var/www/midterm.org 2>/dev/null
+mv /etc/apache2/sites-enabled/*.conf /etc/apache2/sites-enabled/midterm_backup/ 2>/dev/null
 ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 blank_line
 a2enmod ssl
+blank_line
 systemctl start apache2
 apache2ctl -t -D DUMP_VHOSTS
 #
@@ -59,10 +60,8 @@ chmod 644 /etc/bind/named.conf.options
 cp /multiplatform/Linux/midterm/named.conf.local.midterm /etc/bind/named.conf.local
 chown root:bind /etc/bind/named.conf.local
 chmod 644 /etc/bind/named.conf.local
-cp /multiplatform/Linux/midterm.org /var/cache/bind/
+cp /multiplatform/Linux/midterm/midterm.org /var/cache/bind/
 chmod 644 /var/cache/bind/midterm.org
-cp /multiplatform/Linux/example.com /var/cache/bind/
-chmod 644 /var/cache/bind/example.com
 systemctl start bind9
 named-checkconf -z /etc/bind/named.conf
 blank_line
