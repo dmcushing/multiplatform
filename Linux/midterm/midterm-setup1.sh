@@ -45,11 +45,13 @@ a2enmod ssl
 blank_line
 systemctl start apache2
 apache2ctl -t -D DUMP_VHOSTS
+blank_line
 #
 # Prep Bind back to defaults
 # Copy files for midterm
 #
 echo -e "....Cleaning Bind Settings..."
+blank_line
 systemctl stop bind9
 iptables -I INPUT -s localhost -d 127.0.0.53 -j ACCEPT
 mv /etc/bind/named.conf.options /etc/bind/named.conf.options.midterm
