@@ -1,0 +1,34 @@
+; Start of Authority (SOA) record
+
+$TTL    604800
+@       IN      SOA     ns1.midterm.org. admin.midterm.org. (
+                              4         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+; name servers - NS records
+
+
+    IN      NS      ns1.midterm.org.
+    IN      NS      ns2.midterm.org.
+
+;
+; REPLACE 10.10.10.2 WITH INTERNAL IP ADDRESS OF WINDOWS
+; REPLACE 10.10.10.3 WITH INTERNAL IP ADDRESS OF UBUNTU1
+;
+
+; name servers - A records
+
+
+ns1.midterm.org.          IN      A      10.10.10.2
+ns2.midterm.org.          IN      A      10.10.10.3
+
+; Hosts - A records
+
+
+windows2016.midterm.org.    IN      A      10.10.10.2
+host1						IN		A      10.10.10.2
+ubuntu1804.midterm.org.		IN      A      10.10.10.3
+host2						IN      A      10.10.10.3
