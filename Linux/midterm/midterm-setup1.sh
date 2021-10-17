@@ -32,8 +32,8 @@ echo -e "Setting up..."
 #
 echo -e "..Cleaning Apache Sites..."
 systemctl apache2 stop
-cp -f /multiplatform/Linux/midterm/ssl-server-nopass.key /etc/ssl/
-chmod 644 /etc/ssl/Linux/ssl-server-nopass.key
+cp -f /multiplatform/Linux/ssl-server-nopass.key /etc/ssl/
+chmod 644 /etc/ssl/ssl-server-nopass.key
 cp -f /multiplatform/Linux/midterm/www.midterm.org.pem /etc/ssl/
 chmod 644 /etc/ssl/www.midterm.org.pem
 mkdir /etc/apache2/sites-enabled/midterm_backup 2>/dev/null

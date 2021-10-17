@@ -27,7 +27,7 @@ zone "midterm.org" {
 // UBUNTU AS SECONDARY
 
 zone "midterm.org" {
-    type master;
+    type slave;
     file "midterm.org";
     masters { 10.10.10.10; };
 };
