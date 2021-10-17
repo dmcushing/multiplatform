@@ -31,7 +31,7 @@ echo -e "Setting up..."
 # Copy files for midterm
 #
 echo -e "..Cleaning Apache Sites..."
-systemctl apache2 stop
+systemctl stop apache2
 cp -f /multiplatform/Linux/ssl-server-nopass.key /etc/ssl/
 chmod 644 /etc/ssl/ssl-server-nopass.key
 cp -f /multiplatform/Linux/midterm/www.midterm.org.pem /etc/ssl/
