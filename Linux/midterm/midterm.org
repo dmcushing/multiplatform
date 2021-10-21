@@ -27,6 +27,8 @@ ns2.midterm.org.          IN      A      10.10.10.3
 
 ; Hosts - A records
 
+@                           IN      A      10.10.10.2
+@                           IN      A      10.10.10.3
 
 windows2016.midterm.org.    IN      A      10.10.10.2
 host1.midterm.org.          IN      A      10.10.10.2
