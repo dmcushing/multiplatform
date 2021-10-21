@@ -29,8 +29,8 @@ ns2.midterm.org.          IN      A      10.10.10.3
 
 
 windows2016.midterm.org.    IN      A      10.10.10.2
-host1.midterm.org.			IN		A      10.10.10.2
-www.midterm.org.			IN		A      10.10.10.2
-ubuntu1804.midterm.org.		IN      A      10.10.10.3
-host2.midterm.org.			IN      A      10.10.10.3
-www.midterm.org.			IN		A      10.10.10.3
+host1.midterm.org.          IN      A      10.10.10.2
+www.midterm.org.            IN      A      10.10.10.2
+ubuntu1804.midterm.org.	    IN      A      10.10.10.3
+host2.midterm.org.          IN      A      10.10.10.3
+www.midterm.org.            IN      A      10.10.10.3
