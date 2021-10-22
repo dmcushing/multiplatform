@@ -36,5 +36,8 @@ chmod 644 /var/cache/bind/midterm.org
 chmod 666 /etc/apache2/sites-enabled/midterm.org.conf
 chmod 666 /var/www/midterm.org/index.html
 chmod 666 /var/www/midterm.org/apacherror.html
+mv /etc/resolf.conf /etc/resolv.conf.orig
+ln -s /multiplatform/resolv.conf /etc/resolv.conf 2>/dev/null
+apt -y -qq install httpie
 blank_line
 echo -e "Done.."
