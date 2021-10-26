@@ -38,6 +38,7 @@ chmod 666 /var/www/midterm.org/index.html
 chmod 666 /var/www/midterm.org/apacherror.html
 mv /etc/resolv.conf /etc/resolv.conf.orig
 ln -s /multiplatform/resolv.conf /etc/resolv.conf 2>/dev/null
-apt -y -qq install httpie
+apt -y update
+apt -y install httpie
 blank_line
 echo -e "Done.."
