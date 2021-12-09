@@ -1,0 +1,9 @@
+//
+// CET2420 FINAL EXAM
+//
+
+zone "cet2420-final.org" {
+    type master
+    file "cet2420-final.org";
+    allow-transfer { };
+};
