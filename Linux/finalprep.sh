@@ -25,5 +25,5 @@ systemctl restart apache2
 
 cp /multiplatform/Linux/dhtest /usr/bin/
 chmod 755 /usr/bin/dhtest
-cp /multiplaform/Linux/final/dhcpd.conf /etc/dhcp/
+cp /multiplatform/Linux/final/dhcpd.conf /etc/dhcp/
 systemctl restart isc-dhcp-server
