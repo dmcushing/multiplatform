@@ -47,17 +47,17 @@ blank_line
 
 echo -e "apache checks" | tee -a $outfile
 echo -e "https://www.cet2420-final.org Check:" | tee -a $outfile
-http --verify=no https://www.cet2420-final.org | tee -a $outfile
+http --verify=no --timeout=5 https://www.cet2420-final.org | tee -a $outfile
 blank_line
 echo -e "https://www.cet2420-final.org Error Page Check:" | tee -a $outfile
-http --verify=no https://www.cet2420-final.org/generaterror.html | tee -a $outfile
+http --verify=no --timeout=5 https://www.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 echo -e "windows checks" | tee -a $outfile
 echo -e "https://windows.cet2420-final.org Check:" | tee -a $outfile
-http --verify=no https://windows.cet2420-final.org | tee -a $outfile
+http --verify=no --timeout=5 https://windows.cet2420-final.org | tee -a $outfile
 blank_line
 echo -e "https://windows.cet2420-final.org Error Page Check:" | tee -a $outfile
-http --verify=no https://windows.cet2420-final.org/generaterror.html | tee -a $outfile
+http --verify=no --timeout=5 https://windows.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 
 echo -e "dhcp check" | tee -a $outfile
