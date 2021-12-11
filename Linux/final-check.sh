@@ -16,19 +16,21 @@ read winip
 
 # bind
 
-echo -e "bind checks: Ubuntu" | tee -a $outfile
-echo -e "           www.cet2420-final.org: `dig @localhost +noall +answer www.cet2420-final.org`" | tee -a $outfile
-echo -e "        ubuntu.cet2420-final.org: `dig @localhost +noall +answer ubuntu.cet2420-final.org`" | tee -a $outfile
-echo -e "         linux.cet2420-final.org: `dig @localhost +noall +answer linux.cet2420-final.org`" | tee -a $outfile
-echo -e "          mail.cet2420-final.org: `dig @localhost +noall +answer mail.cet2420-final.org`" | tee -a $outfile
-echo -e "mail.cet2420-final.org MX Record: `dig @localhost +noall +answer cet2420-final.org MX`" | tee -a $outfile
-echo -e "       windows.cet2420-final.org: `dig @localhost +noall +answer windows.cet2420-final.org`" | tee -a $outfile
-echo -e "         s2016.cet2420-final.org: `dig @localhost +noall +answer s2016.cet2420-final.org`" | tee -a $outfile
-blank_line
-echo -e "bind checks: Windows" | tee -a $outfile
+echo -e "DNS checks: Ubuntu" | tee -a $outfile
 echo -e "Primary:" | tee -a $outfile
-echo -e "           final.cet2420-win.org: `dig @$winip +noall +answer final.cet2420-win.org`" | tee -a $outfile
-echo -e "             tux.cet2420-win.org: `dig @$winip +noall +answer tux.cet2420-win.org`" | tee -a $outfile
+dig @localhost +noall +answer www.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer ubuntu.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer linux.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer mail.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer cet2420-final.org MX | tee -a $outfile
+dig @localhost +noall +answer windows.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer s2016.cet2420-final.org | tee -a $outfile
+blank_line
+echo -e "DNS checks: Windows" | tee -a $outfile
+echo -e "Primary:" | tee -a $outfile
+dig @$winip +noall +answer final.cet2420-win.org | tee -a $outfile
+dig @$winip +noall +answer tux.cet2420-win.org | tee -a $outfile
+blank_line
 echo -e "Secondary:" | tee -a $outfile
 dig @$winip +noall +answer www.cet2420-final.org | tee -a $outfile
 dig @$winip +noall +answer ubuntu.cet2420-final.org | tee -a $outfile
