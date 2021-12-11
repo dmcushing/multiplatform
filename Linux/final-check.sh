@@ -46,22 +46,24 @@ dig @$winip +noall +answer s2016.cet2420-final.org | tee -a $outfile
 blank_line
 
 echo -e "apache checks" | tee -a $outfile
-echo -e "https://www.cet2420-final.org Check:"
+echo -e "https://www.cet2420-final.org Check:" | tee -a $outfile
 http --verify=no https://www.cet2420-final.org | tee -a $outfile
 blank_line
-echo -e "https://www.cet2420-final.org Error Page Check:"
+echo -e "https://www.cet2420-final.org Error Page Check:" | tee -a $outfile
 http --verify=no https://www.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 echo -e "windows checks" | tee -a $outfile
+echo -e "https://windows.cet2420-final.org Check:" | tee -a $outfile
 http --verify=no https://windows.cet2420-final.org | tee -a $outfile
+echo -e "https://windows.cet2420-final.org Error Page Check:" | tee -a $outfile
 http --verify=no https://windows.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 
-echo -e "dhcp check"
-/usr/bin/dhtest -i ens4 m 01:01:01:22:33:FF -g 192.168.254.2 -S $ubuntuip | tee -a $outfile
+echo -e "dhcp check" | tee -a $outfile
+/usr/bin/dhtest -i ens4 -m 01:01:01:22:33:FF -g 192.168.254.2 -S $ubuntuip | tee -a $outfile
 blank_line
 
-echo -e "nfs check"
+echo -e "nfs check" | tee -a $outfile
 exportfs -v | tee -a $outfile
 blank_line
 

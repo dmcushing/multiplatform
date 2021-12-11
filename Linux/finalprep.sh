@@ -21,18 +21,14 @@ cp -f /multiplatform/Linux/final/cet2420-final.org /var/cache/bind/
 cp -f /multiplatform/Linux/final/bind9 /etc/default/
 systemctl restart bind9
 
-cp /multiplatform/Linux/final/cet2420-final.org.conf /etc/apache2/sites-enabled/
-cp /multiplatform/Linux/final/cet2420-final.org.key /etc/ssl/cet2420-final.org.key
-cp /multiplatform/Linux/final/cet2420-final.org.pem /etc/ssl/cet2420-final.org.pem
+cp -f /multiplatform/Linux/final/cet2420-final.org.conf /etc/apache2/sites-enabled/
+cp -f /multiplatform/Linux/final/cet2420-final.org.key /etc/ssl/cet2420-final.org.key
+cp -f /multiplatform/Linux/final/cet2420-final.org.pem /etc/ssl/cet2420-final.org.pem
 chmod 644 /etc/ssl/cet2420-final.org.key
 chmod 644 /etc/ssl/cet2420-final.org.pem
 systemctl restart apache2
 
-cp /multiplatform/Linux/dhtest /usr/bin/
+cp -f /multiplatform/Linux/dhtest /usr/bin/
 chmod 755 /usr/bin/dhtest
-cp /multiplatform/Linux/final/dhcpd.conf /etc/dhcp/
+cp -f /multiplatform/Linux/final/dhcpd.conf /etc/dhcp/
 systemctl restart isc-dhcp-server
-
-echo -e "Rebooting in 10 seconds..."
-sleep 10
-reboot

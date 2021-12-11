@@ -47,8 +47,8 @@ echo -e "CET2420 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
 return 0
 }
 
-student_info_midterm(){
-echo -e "CET1025 $1 $2 Submission"
+student_info_test(){
+echo -e "CET2420 $1 $2 Submission"
 echo -n "Enter your first name: "
 read fname
 echo -n "Enter your last name: "
@@ -63,7 +63,7 @@ outfile=/tmp/$filename
 
 echo -e "Work will be saved in $outfile \n"
 echo $HOSTNAME > $outfile
-echo -e "CET1025 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
+echo -e "CET2420 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
 return 0
 }
 
