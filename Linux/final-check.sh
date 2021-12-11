@@ -22,27 +22,27 @@ read winip
 
 echo -e "DNS checks: Ubuntu" | tee -a $outfile
 echo -e "Primary:" | tee -a $outfile
-dig @localhost +noall +answer www.cet2420-final.org | tee -a $outfile
-dig @localhost +noall +answer ubuntu.cet2420-final.org | tee -a $outfile
-dig @localhost +noall +answer linux.cet2420-final.org | tee -a $outfile
-dig @localhost +noall +answer mail.cet2420-final.org | tee -a $outfile
-dig @localhost +noall +answer cet2420-final.org MX | tee -a $outfile
-dig @localhost +noall +answer windows.cet2420-final.org | tee -a $outfile
-dig @localhost +noall +answer s2016.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 www.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 ubuntu.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 linux.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 mail.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 cet2420-final.org MX | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 windows.cet2420-final.org | tee -a $outfile
+dig @localhost +noall +answer +tries=1 +time=5 s2016.cet2420-final.org | tee -a $outfile
 blank_line
 echo -e "DNS checks: Windows" | tee -a $outfile
 echo -e "Primary:" | tee -a $outfile
-dig @$winip +noall +answer final.cet2420-win.org | tee -a $outfile
-dig @$winip +noall +answer tux.cet2420-win.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 final.cet2420-win.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 tux.cet2420-win.org | tee -a $outfile
 blank_line
 echo -e "Secondary:" | tee -a $outfile
-dig @$winip +noall +answer www.cet2420-final.org | tee -a $outfile
-dig @$winip +noall +answer ubuntu.cet2420-final.org | tee -a $outfile
-dig @$winip +noall +answer linux.cet2420-final.org | tee -a $outfile
-dig @$winip +noall +answer mail.cet2420-final.org | tee -a $outfile
-dig @$winip +noall +answer cet2420-final.org MX | tee -a $outfile
-dig @$winip +noall +answer windows.cet2420-final.org | tee -a $outfile
-dig @$winip +noall +answer s2016.cet2420-final.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 www.cet2420-final.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 ubuntu.cet2420-final.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 linux.cet2420-final.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 mail.cet2420-final.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 cet2420-final.org MX | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 windows.cet2420-final.org | tee -a $outfile
+dig @$winip +noall +answer +tries=1 +time=5 s2016.cet2420-final.org | tee -a $outfile
 blank_line
 
 echo -e "apache checks" | tee -a $outfile
@@ -55,12 +55,13 @@ blank_line
 echo -e "windows checks" | tee -a $outfile
 echo -e "https://windows.cet2420-final.org Check:" | tee -a $outfile
 http --verify=no https://windows.cet2420-final.org | tee -a $outfile
+blank_line
 echo -e "https://windows.cet2420-final.org Error Page Check:" | tee -a $outfile
 http --verify=no https://windows.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 
 echo -e "dhcp check" | tee -a $outfile
-/usr/bin/dhtest -i ens4 -m 01:01:01:22:33:FF -g 192.168.254.2 -S $ubuntuip | tee -a $outfile
+/usr/bin/dhtest -i ens4 -k 5 -m 01:01:01:22:33:FF -g 192.168.254.2 -S $ubuntuip | tee -a $outfile
 blank_line
 
 echo -e "nfs check" | tee -a $outfile
