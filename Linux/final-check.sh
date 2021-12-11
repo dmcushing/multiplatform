@@ -61,7 +61,7 @@ http --verify=no https://windows.cet2420-final.org/generaterror.html | tee -a $o
 blank_line
 
 echo -e "dhcp check" | tee -a $outfile
-/usr/bin/dhtest -i ens4 -k 5 -m 01:01:01:22:33:FF -g 192.168.254.2 -S $ubuntuip | tee -a $outfile
+/usr/bin/dhtest -i ens4 -T 5 -m 01:01:01:22:33:FF -g 192.168.254.2 -S $ubuntuip | tee -a $outfile
 blank_line
 
 echo -e "nfs check" | tee -a $outfile
