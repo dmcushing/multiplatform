@@ -84,4 +84,4 @@ echo -e "/etc/exports" >> $outfile
 cat /etc/exports >> $outfile
 echo -e " " >> $outfile
 
-mail_out_midterm 2420 Final
+mail_out_test 2420 Final
