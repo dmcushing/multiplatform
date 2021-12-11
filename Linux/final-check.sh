@@ -6,6 +6,7 @@ gzip -d /multiplatform/Linux/sendgrid.sh.gz 2>&1>/dev/null
 chmod 755 /multiplatform/Linux/sendgrid.sh
 source /multiplatform/Linux/sendgrid.sh
 sendgridapi
+gzip /multiplatform/Linux/sendgrid.sh
 
 # Gather Student Work
 
