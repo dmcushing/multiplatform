@@ -11,7 +11,7 @@ sendgridapi
 
 clear
 is_super_user
-student_info 2420_Final_Exam
+student_info 2420 Final
 echo -n " Enter your Ubuntu internal IP: "
 read ubuntuip
 echo -n "Enter your Windows internal IP: "
@@ -64,21 +64,21 @@ echo -e "nfs check"
 exportfs -v | tee -a $outfile
 blank_line
 
-echo -e "CONFIG FILES" > $outfile
-echo -e "/etc/bind/named.conf.local" > $outfile
-cat /etc/bind/named.conf.local > $outfile
-echo -e " " > $outfile
-echo -e "/var/cache/bind/cet2420-final.org" > $outfile
-cat /var/cache/bind/cet2420-final.org > $outfile
-echo -e " " > $outfile
-echo -e "/etc/apache2/sites-enabled/cet2420-final.org.conf" > $outfile
-cat /etc/apache2/sites-enabled/cet2420-final.org.conf > $outfile
-echo -e " " > $outfile
-echo -e "/etc/dhcp/dhcpd.conf" > $outfile
-cat /etc/dhcp/dhcpd.conf > $outfile
-echo -e " " > $outfile
-echo -e "/etc/exports" > $outfile
-cat /etc/exports > $outfile
-echo -e " " > $outfile
+echo -e "CONFIG FILES" >> $outfile
+echo -e "/etc/bind/named.conf.local" >> $outfile
+cat /etc/bind/named.conf.local >> $outfile
+echo -e " " >> $outfile
+echo -e "/var/cache/bind/cet2420-final.org" >> $outfile
+cat /var/cache/bind/cet2420-final.org >> $outfile
+echo -e " " >> $outfile
+echo -e "/etc/apache2/sites-enabled/cet2420-final.org.conf" >> $outfile
+cat /etc/apache2/sites-enabled/cet2420-final.org.conf >> $outfile
+echo -e " " >> $outfile
+echo -e "/etc/dhcp/dhcpd.conf" >> $outfile
+cat /etc/dhcp/dhcpd.conf >> $outfile
+echo -e " " >> $outfile
+echo -e "/etc/exports" >> $outfile
+cat /etc/exports >> $outfile
+echo -e " " >> $outfile
 
-mail_out 2420 Final Exam
+mail_out 2420 Final
