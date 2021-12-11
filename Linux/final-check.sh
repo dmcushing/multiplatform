@@ -16,13 +16,14 @@ read ubuntuip
 # bind
 
 echo -e "bind checks: Ubuntu" | tee -a $outfile
-dig @localhost +noall +answer www.cet2420-final.org | tee -a $outfile
+echo -e "www.cet2420-final.org: `dig @localhost +noall +answer www.cet2420-final.org`" | tee -a $outfile
 dig @localhost +noall +answer ubuntu.cet2420-final.org | tee -a $outfile
 dig @localhost +noall +answer linux.cet2420-final.org | tee -a $outfile
 dig @localhost +noall +answer mail.cet2420-final.org | tee -a $outfile
 dig @localhost +noall +answer cet2420-final.org MX | tee -a $outfile
 dig @localhost +noall +answer windows.cet2420-final.org | tee -a $outfile
 dig @localhost +noall +answer s2016.cet2420-final.org | tee -a $outfile
+blank_line
 echo -e "bind checks: Windows" | tee -a $outfile
 echo -e "Primary:" | tee -a $outfile
 dig @$winip +noall +answer final.cet2420-win.org | tee -a $outfile
@@ -38,15 +39,15 @@ dig @$winip +noall +answer s2016.cet2420-final.org | tee -a $outfile
 blank_line
 
 echo -e "apache checks" | tee -a $outfile
-check_existence 0 /var/www/cet2420-final.org/index.html f
-check_existence 0 /var/www/cet2420-final.org/error.html f
-blank_line
+echo -e "https://www.cet2420-final.org Check:"
 http --verify=no https://www.cet2420-final.org | tee -a $outfile
-http --verify=no https://www.cet2420-final.org/generaterror.html tee -a $outfile
+blank_line
+echo -e "https://www.cet2420-final.org Error Page Check:"
+http --verify=no https://www.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 echo -e "windows checks" | tee -a $outfile
 http --verify=no https://windows.cet2420-final.org | tee -a $outfile
-http --verify=no https://windows.cet2420-final.org/generaterror.html tee -a $outfile
+http --verify=no https://windows.cet2420-final.org/generaterror.html | tee -a $outfile
 blank_line
 
 echo -e "dhcp check"
@@ -55,6 +56,7 @@ blank_line
 
 echo -e "nfs check"
 exportfs -v | tee -a $outfile
+blank_line
 
 echo -e "CONFIG FILES" | tee -a $outfile
 echo -e "/etc/bind/named.conf.local" | tee -a $outfile
