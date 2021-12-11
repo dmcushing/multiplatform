@@ -12,7 +12,7 @@ gzip /multiplatform/Linux/sendgrid.sh
 
 clear
 is_super_user
-student_info 2420 Final
+student_info_test 2420 Final
 echo -n " Enter your Ubuntu internal IP: "
 read ubuntuip
 echo -n "Enter your Windows internal IP: "
@@ -84,4 +84,4 @@ echo -e "/etc/exports" >> $outfile
 cat /etc/exports >> $outfile
 echo -e " " >> $outfile
 
-mail_out 2420 Final
+mail_out_midterm 2420 Final
