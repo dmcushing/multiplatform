@@ -26,7 +26,7 @@ fi
 # Gather Student Information and Create Information File
 
 student_info(){
-echo -e "CET1025 $1 $2 Submission"
+echo -e "CET2420 $1 $2 Submission"
 echo -n "Enter your first name: "
 read fname
 echo -n "Enter your last name: "

@@ -2,8 +2,11 @@
 # Final Exam
 
 source /multiplatform/Linux/functions.sh
-gzip -d /multiplatform/Linux/sendgrid.gz.sh 2>&1>/dev/null
+gzip -d /multiplatform/Linux/sendgrid.sh.gz 2>&1>/dev/null
+chmod 755 /multiplatform/Linux/sendgrid.sh
 source /multiplatform/Linux/sendgrid.sh
+sendgridapi
+
 # Gather Student Work
 
 clear
