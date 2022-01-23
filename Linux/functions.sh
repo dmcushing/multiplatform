@@ -16,7 +16,7 @@ return 0
 is_super_user(){
 	if [ $EUID -ne 0 ]
 then
-        echo "Insufficient permissions. Run this script as root, or with sudo."
+        echo "Insufficient permissions. Run this script with sudo -E"
         exit 1
 else
 	return 0
