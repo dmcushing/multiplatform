@@ -1,0 +1,11 @@
+// MULTIPLATFORM Forward lookup zone
+
+// the zone file will be /var/cache/bind/multiplatform.test
+// replace IPADDRESS with 10.10.10.10
+// correct any syntax errors
+
+zone "multiplatform.test" {
+    type master;
+    file "multiplatform.com";
+    allow-transfer { IPADDRESS };
+}

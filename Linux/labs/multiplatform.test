@@ -1,0 +1,29 @@
+; Start of Authority (SOA) record
+
+$TTL    604800
+@       IN      SOA     ns1.multiplatform.test. admin.multiplatform.test. (
+                            666         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+; create name server records
+; ns1.multiplatform.test and ns2.multiplatform.test
+
+    IN      NS      
+    IN      NS      
+
+; create name servers Host (A) records
+; every name server (above) must have a corresponding A record
+; ns1 10.10.10.41
+; ns2 10.10.10.42
+
+
+; internal Host (A) records
+; create records for:
+; fileserver 10.10.10.20
+; www 10.10.10.21
+; www 10.10.10.23
+; mailbox1 10.10.10.31
+; mailbox2 10.10.10.32
