@@ -26,4 +26,4 @@ $TTL    604800
 ; www 10.10.10.21
 ; www 10.10.10.23
 ; mailbox1 10.10.10.31
-; mailbox2 10.10.10.32
+; mailbox2 CNAME record pointing to mailbox1
