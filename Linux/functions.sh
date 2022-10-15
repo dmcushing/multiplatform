@@ -27,14 +27,14 @@ fi
 
 student_info(){
 echo -e "CET1025 $1 $2 Submission"
-while IFS=: read -r c1 c2; do
-    [[ $c1 == Name ]] && name=$c1
-    [[ $c1 == FName ]] && fname=$c1
-    [[ $c1 == LName ]] && lname=$c1
-    [[ $c1 == Email ]] && mailaddy=$c1
-    [[ $c1 == Student ]] && snumber=$c1
-    [[ $c1 == Instructor ]] && inmailaddy=$c1
-done < ~/.info/.info
+# while IFS=: read -r c1 c2; do
+#    [[ $c1 == Name ]] && name=$c1
+#    [[ $c1 == FName ]] && fname=$c1
+#    [[ $c1 == LName ]] && lname=$c1
+#    [[ $c1 == Email ]] && mailaddy=$c1
+#    [[ $c1 == Student ]] && snumber=$c1
+#    [[ $c1 == Instructor ]] && inmailaddy=$c1
+# done < ~/.info/.info
 
 echo -n "Enter your first name: "
 read fname
@@ -51,7 +51,6 @@ mkdir ~/.output 2>/tmp/null
 outfile=~/.output/$filename
 
 echo -e "Work will be saved in $outfile \n"
-echo $HOSTNAME $( TZ=America/Toronto date ) > $outfile
 echo -e "CET1025 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
 return 0
 }
