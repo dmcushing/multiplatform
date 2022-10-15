@@ -1,33 +1,11 @@
-//
-// Do any local configuration here
-//
-
-// Consider adding the 1918 zones here, if they are not used in your
-// organization
-//include "/etc/bind/zones.rfc1918";
-
-// MAKE YOUR CHANGES BELOW
-
-// MIDTERM Forward lookup zone
-// the zone file will be /var/cache/bind/midterm.org
+// MIDTERM 
 // allow transfer will be the IP address of your WINDOWS server
-
-// YOU ONLY NEED TO MODIFY THE allow-transfer IP ADDRESS BELOW
-// IT IS THE INTERNAL IP ADDRESS OF YOUR WINDOWS SERVER
-// UBUNTU AS PRIMARY
-
-zone "midterm.org" {
-    type master;
-    file "midterm.org";
-    allow-transfer { 10.10.10.10; };
-};
 
 // YOU ONLY NEED TO MODIFY THE masters IP ADDRESS BELOW
 // IT IS THE INTERNAL IP ADDRESS OF YOUR WINDOWS SERVER
-// UBUNTU AS SECONDARY
 
-zone "midterm-2.org" {
+zone "midterm.org" {
     type slave;
-    file "midterm-2.org";
+    file "midterm.org";
     masters { 10.10.10.10; };
 };

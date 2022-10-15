@@ -26,7 +26,16 @@ fi
 # Gather Student Information and Create Information File
 
 student_info(){
-echo -e "CET2420 $1 $2 Submission"
+echo -e "CET1025 $1 $2 Submission"
+while IFS=: read -r c1 c2; do
+    [[ $c1 == Name ]] && name=$c1
+    [[ $c1 == FName ]] && fname=$c1
+    [[ $c1 == LName ]] && lname=$c1
+    [[ $c1 == Email ]] && mailaddy=$c1
+    [[ $c1 == Student ]] && snumber=$c1
+    [[ $c1 == Instructor ]] && inmailaddy=$c1
+done < ~/.info/.info
+
 echo -n "Enter your first name: "
 read fname
 echo -n "Enter your last name: "
@@ -38,17 +47,17 @@ read mailaddy
 fname=`echo $fname | sed 's/ /_/g'`
 lname=`echo $lname | sed 's/ /_/g'`
 filename=$snumber-$1_$2_${fname:0:1}_$lname.txt
-tarfile=$snumber-$1_$2_${fname:0:1}_$lname.tar.gz
-outfile=/tmp/$filename
+mkdir ~/.output 2>/tmp/null
+outfile=~/.output/$filename
 
 echo -e "Work will be saved in $outfile \n"
-echo $HOSTNAME > $outfile
-echo -e "CET2420 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
+echo $HOSTNAME $( TZ=America/Toronto date ) > $outfile
+echo -e "CET1025 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
 return 0
 }
 
-student_info_test(){
-echo -e "CET2420 $1 $2 Submission"
+student_info_midterm(){
+echo -e "CET1025 $1 $2 Submission"
 echo -n "Enter your first name: "
 read fname
 echo -n "Enter your last name: "
@@ -58,12 +67,12 @@ read snumber
 fname=`echo $fname | sed 's/ /_/g'`
 lname=`echo $lname | sed 's/ /_/g'`
 filename=$snumber-$1_$2_${fname:0:1}_$lname.txt
-tarfile=$snumber-$1_$2_${fname:0:1}_$lname.tar.gz
-outfile=/tmp/$filename
+mkdir ~/.output 2>/tmp/null
+outfile=~/.output/$filename
 
 echo -e "Work will be saved in $outfile \n"
-echo $HOSTNAME > $outfile
-echo -e "CET2420 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
+echo $HOSTNAME $( TZ=America/Toronto date ) > $outfile
+echo -e "CET1025 $1 $2 - ($snumber) $fname $lname \n" | tee -a $outfile
 return 0
 }
 
@@ -87,11 +96,11 @@ content=`base64 -w0 $outfile`
 attachment="$1_$2-$lname-$fname.txt"
 
 read -p "Mail your work to your instructor? (y to send mail or CTRL-C to exit) "
-[ "$REPLY" != "y" ] || curl --request POST \
+[ "${REPLY,,}" != "y" ] || curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "dave@davecushing.ca"}],"cc": [{"email":"'"$mailaddy"'"}]}],"from": {"email": "dave@davecushing.ca"},"subject": "'"$fname $lname: $1 $2"'","content": [{"type": "text/plain", "value": "Sent as attachment:"}] , "attachments": [{"content": "'"$content"'", "type": "text/plain", "filename": "'"$attachment"'"}]}'
+  --data '{"personalizations": [{"to": [{"email": "dave@davecushing.ca"}],"cc": [{"email":"'"$mailaddy"'"}]}],"from": {"email": "dave@davecushing.ca"},"subject": "'"$lname $fname: $1 $2"'","content": [{"type": "text/plain", "value": "Sent as attachment:"}] , "attachments": [{"content": "'"$content"'", "type": "text/plain", "filename": "'"$attachment"'"}]}'
 
 exit 0
 }
@@ -101,11 +110,11 @@ content=`base64 -w0 $outfile`
 attachment="$1_$2-$lname-$fname.txt"
 
 read -p "Mail your work to your instructor? (y to send mail or CTRL-C to exit) "
-[ "$REPLY" != "y" ] || curl --request POST \
+[ "${REPLY,,}" != "y" ] || curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "dave@davecushing.ca"}]}],"from": {"email": "dave@davecushing.ca"},"subject": "'"$1 $2: $fname $lname"'","content": [{"type": "text/plain", "value": "Sent as attachment:"}] , "attachments": [{"content": "'"$content"'", "type": "text/plain", "filename": "'"$attachment"'"}]}'
+  --data '{"personalizations": [{"to": [{"email": "dave@davecushing.ca"}]}],"from": {"email": "dave@davecushing.ca"},"subject": "'"$1 $2: $lname $fname"'","content": [{"type": "text/plain", "value": "Sent as attachment:"}] , "attachments": [{"content": "'"$content"'", "type": "text/plain", "filename": "'"$attachment"'"}]}'
 
 exit 0
 }
@@ -131,11 +140,16 @@ fi
 # parameters question, filename, permissions -rwxrwxrwx
 
 check_permissions(){
-if [ `stat -c %A $2` == $3 ]; then
-        echo -e "Question $1: $2 - correct permissions" | tee -a $outfile
-	return 0
+if [ -e $2 ]; then
+	if [ `stat -c %A $2` == $3 ]; then
+			echo -e "Question $1: $2 - correct permissions" | tee -a $outfile
+		return 0
+	else
+			echo -e "!! ERROR !! Question $1: $2 - incorrect permissions, should be $3." | tee -a $outfile
+		return 0
+	fi
 else
-        echo -e "!! ERROR !! Question $1: $2 - incorrect permissions, should be $3." | tee -a $outfile
+    echo -e "!! ERROR !! Question $1: $2 - doesn't exist, can't determine line count." | tee -a $outfile
 	return 0
 fi
 }
@@ -144,11 +158,16 @@ fi
 # Parameters question, filename, owner
 
 check_owner(){
-if [ `stat -c %U $2` == $3 ]; then
-        echo -e "Question $1: $2 - correct owner" | tee -a $outfile
-	return 0
+if [ -e $2 ]; then
+	if [ `stat -c %U $2` == $3 ]; then
+			echo -e "Question $1: $2 - correct owner" | tee -a $outfile
+		return 0
+	else
+			echo -e "!! ERROR !! Question $1: $2 - incorrect owner, should be $3." | tee -a $outfile
+		return 0
+	fi
 else
-        echo -e "!! ERROR !! Question $1: $2 - incorrect owner, should be $3." | tee -a $outfile
+    echo -e "!! ERROR !! Question $1: $2 - doesn't exist, can't determine owner." | tee -a $outfile
 	return 0
 fi
 }
@@ -157,11 +176,16 @@ fi
 # Parameters question, filename, group
 
 check_group(){
-if [ `stat -c %G $2` == $3 ]; then
-        echo -e "Question $1: $2 - correct group" | tee -a $outfile
-	return 0
+if [ -e $2 ]; then
+	if [ `stat -c %G $2` == $3 ]; then
+			echo -e "Question $1: $2 - correct group" | tee -a $outfile
+		return 0
+	else
+			echo -e "!! ERROR !! Question $1: $2 - incorrect group, should be $3." | tee -a $outfile
+		return 0
+	fi
 else
-        echo -e "!! ERROR !! Question $1: $2 - incorrect group, should be $3." | tee -a $outfile
+    echo -e "!! ERROR !! Question $1: $2 - doesn't exist, can't determine group." | tee -a $outfile
 	return 0
 fi
 }
