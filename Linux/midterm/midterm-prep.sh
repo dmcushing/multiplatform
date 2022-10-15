@@ -24,6 +24,7 @@ echo -e "..Cleaning Apache Sites..." | tee -a $outfile
 systemctl stop apache2
 cp -f /multiplatform/Linux/ssl-server-nopass.key /etc/ssl/ &> /dev/null
 chmod 644 /etc/ssl/ssl-server-nopass.key
+cp -f /multiplatform/Linux/midterm/lnxX.midterm.org.pem /etc/ssl/ &> /dev/null
 cp -f /multiplatform/Linux/midterm/lnx1.midterm.org.pem /etc/ssl/ &> /dev/null
 cp -f /multiplatform/Linux/midterm/lnx2.midterm.org.pem /etc/ssl/ &> /dev/null
 chmod 644 /etc/ssl/lnx*.midterm.org.pem
