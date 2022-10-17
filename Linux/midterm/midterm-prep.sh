@@ -33,16 +33,16 @@ mkdir -p /var/www/midterm.org &> /dev/null
 mv /etc/apache2/sites-enabled/[!0]*.conf /etc/apache2/sites-enabled/midterm_backup/ &> /dev/null
 cp -f /multiplatform/Linux/midterm/midterm.org.conf /etc/apache2/sites-enabled/
 cp -f /multiplatform/Linux/midterm/apacheindex.html /var/www/midterm.org/index.html
-cp -f /multiplatform/Linux/midterm/apacherror.html /var/www/midterm.org/
+cp -f /multiplatform/Linux/midterm/apacherror.html /var/www/midterm.org/apacherror.htm
 chmod 666 /etc/apache2/sites-enabled/midterm.org.conf
 chmod 666 /var/www/midterm.org/index.html
-chmod 666 /var/www/midterm.org/apacherror.html
+chmod 666 /var/www/midterm.org/apacherror.htm
 check_existence - /etc/ssl/ssl-server-nopass.key f
 check_existence - /etc/ssl/lnx1.midterm.org.pem f
 check_existence - /etc/ssl/lnx2.midterm.org.pem f
 check_existence - /etc/apache2/sites-enabled/midterm.org.conf f
 check_existence - /var/www/midterm.org/index.html f
-check_existence - /var/www/midterm.org/apacherror.html f
+check_existence - /var/www/midterm.org/apacherror.htm f
 a2enmod ssl &> /dev/null
 systemctl start apache2
 blank_line
