@@ -10,7 +10,6 @@ is_super_user
 student_info Final Prep
 clear
 echo -e "Starting Setup.."
-package_check - tree
 package_check - httpie
 package_check - nfs-kernel
 package_check - nfs-common
@@ -19,13 +18,14 @@ package_check - isc-dhcp-server
 blank_line
 
 echo -e "..Cleaning bind..." | tee -a $outfile
-systemctl stop bind9
+systemctl stop bind9 &> /dev/null
 cp -f /etc/bind/named.conf.local /etc/bind/named.conf.local.final
 cp -f /multiplatform/Linux/final/named.conf.local /etc/bind/
 chown root:bind /etc/bind/named.conf.local
 chmod 644 /etc/bind/named.conf.local
 cp -f /multiplatform/Linux/final/cet2420-final.org /var/cache/bind/
-systemctl start bind9
+check_existence - /var/cache/bind/cet2420-final.org f
+echo -e "..bind9 is stopped... remember to start in exam..."
 blank_line
 
 echo -e "..Cleaning Apache Sites..." | tee -a $outfile
@@ -51,13 +51,15 @@ check_existence - /var/www/cet2420-final.org/error.htm f
 a2enmod ssl &> /dev/null
 systemctl start apache2
 blank_line
-apache2ctl -t -D DUMP_VHOSTS | tee -a $outfile
+apache2ctl -t -D DUMP_VHOSTS | grep "final" | tee -a $outfile
 blank_line
 
 echo -e "..Cleaning ISC DHCP..." | tee -a $outfile
 cp -f /multiplatform/Linux/dhtest /usr/bin/
 chmod 755 /usr/bin/dhtest
 cp -f /multiplatform/Linux/final/dhcpd.conf /etc/dhcp/
+check_existence - /etc/dhcp/dhcpd.conf f
+check_existence - /usr/bin/dhtest f
 systemctl restart isc-dhcp-server
 
 mail_out Final Prep
