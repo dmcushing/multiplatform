@@ -61,5 +61,5 @@ cp -f /multiplatform/Linux/final/dhcpd.conf /etc/dhcp/
 check_existence - /etc/dhcp/dhcpd.conf f
 check_existence - /usr/bin/dhtest f
 systemctl restart isc-dhcp-server
-
+blank_line
 mail_out Final Prep
