@@ -18,7 +18,7 @@ $TTL    604800
 ; every name server (above) must have a corresponding A record
 
 
-ns1.cet2420-final.org.          IN      A      [Ubuntu IP]
-ns2.cet2420-final.org.          IN      A      [Windows IP]
+ns1.cet2420-final.org.          IN      A      10.188.0.0 ; change to lnx1 ip
+ns2.cet2420-final.org.          IN      A      10.188.0.0 ; change to win1 ip
 
 ; internal Host (A) records (as specified)

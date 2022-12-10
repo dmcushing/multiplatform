@@ -5,5 +5,4 @@
 zone "cet2420-final.org" {
     type master
     file "cet2420-final.org";
-    allow-transfer { };
 };

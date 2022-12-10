@@ -25,7 +25,7 @@ chown root:bind /etc/bind/named.conf.local
 chmod 644 /etc/bind/named.conf.local
 cp -f /multiplatform/Linux/final/cet2420-final.org /var/cache/bind/
 check_existence - /var/cache/bind/cet2420-final.org f
-echo -e "..bind9 is stopped... remember to start in exam..."
+echo -e "..bind9 is stopped... remember to start in exam..." | tee -a $outfile
 blank_line
 
 echo -e "..Cleaning Apache Sites..." | tee -a $outfile
